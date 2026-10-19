@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>S.I. Solutions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="S.I. Solutions helps Florida business owners hand their repetitive work to AI automations, in English or Spanish. We start with one small pilot and measure it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306070C'/%3E%3Crect x='11' y='7' width='5' height='18' rx='1.2' fill='%23F3F1EA'/%3E%3Ccircle cx='22' cy='22.5' r='3.2' fill='%23FFB38F'/%3E%3C/svg%3E">
+<style>
+/* Layout: deep-space single theme. Fixed starfield canvas behind everything; centered serif hero sits above a planet horizon lit in clay; glass panels float over the dark; one horizon band; FAQ; footer. */
+:root {
+  --void: #06070C;
+  --deep: #0C0E18;
+  --glass: rgba(255, 255, 255, 0.045);
+  --glass-hi: rgba(255, 255, 255, 0.08);
+  --edge: rgba(255, 255, 255, 0.11);
+  --star: #F3F1EA;
+  --body: #B8B6C4;
+  --muted: #7E7C8E;
+  --clay: #E0815F;
+  --clay-hot: #FFB38F;
+  --nebula: #3B2A6B;
+  --serif: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --sans: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --wrap: 72rem;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--void); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--void); color: var(--body);
+  font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  position: relative; overflow-x: hidden;
+}
+#stars { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.sky { position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, rgba(59, 42, 107, .55), transparent 60%),
+    radial-gradient(50rem 36rem at -10% 30%, rgba(40, 52, 110, .35), transparent 60%),
+    radial-gradient(40rem 30rem at 60% 120%, rgba(224, 129, 95, .14), transparent 60%);
+}
+.top, main, footer { position: relative; z-index: 1; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--clay-hot); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--star); margin: 0; text-wrap: balance; letter-spacing: -0.015em; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+
+/* Header */
+.top { padding-block: 18px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: rgba(6, 7, 12, .55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.06); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--void); }
+.top .wrap { display: flex; align-items: center; gap: 28px; }
+.brand { display: flex; align-items: center; text-decoration: none; color: var(--star); }
+.wm { font-family: var(--serif); font-weight: 500; font-size: 1.85rem; letter-spacing: -0.03em; line-height: 1; color: var(--star); }
+.wm .pt { display: inline-block; width: 0.17em; height: 0.17em; margin: 0 0.07em 0 0.05em; border-radius: 50%; background: var(--clay-hot); box-shadow: 0 0 10px 2px rgba(255, 150, 110, .75), 0 0 22px 6px rgba(224, 129, 95, .35); vertical-align: baseline; }
+.wm .sub { font-family: var(--sans); font-weight: 400; font-size: 0.5em; letter-spacing: 0.02em; color: var(--body); margin-left: 0.45em; vertical-align: 0.18em; }
+.nav { display: flex; gap: 26px; margin-left: auto; }
+.nav a { text-decoration: none; color: var(--body); font-size: 0.95rem; }
+.nav a:hover { color: var(--star); }
+.right { display: flex; align-items: center; gap: 12px; }
+.lang { display: inline-flex; background: var(--glass); border: 1px solid var(--edge); border-radius: 10px; padding: 3px; }
+.lang button { font: inherit; font-size: 0.85rem; font-weight: 500; border: 0; background: none; color: var(--muted); padding: 5px 11px; border-radius: 7px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--glass-hi); color: var(--star); }
+.btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; font-weight: 500; font-size: 0.98rem; padding: 11px 20px; border-radius: 10px; border: 1px solid transparent; white-space: nowrap; transition: box-shadow .25s, background .25s; }
+.btn-dark { background: var(--star); color: var(--void); }
+.btn-dark:hover { box-shadow: 0 0 0 4px rgba(255,255,255,.08), 0 0 28px rgba(255, 179, 143, .45); }
+.btn-line { border-color: var(--edge); color: var(--star); background: var(--glass); }
+.btn-line:hover { background: var(--glass-hi); }
+.btn-small { padding: 8px 15px; font-size: 0.92rem; }
+
+/* Hero with planet horizon */
+.hero { padding-block: 96px 0; text-align: center; position: relative; overflow: hidden; }
+.hero h1 { font-size: clamp(2.9rem, 7.6vw, 5.8rem); line-height: 1.0; letter-spacing: -0.035em; max-width: 14ch; margin-inline: auto; font-weight: 300;
+  background: linear-gradient(180deg, #FFFFFF 30%, #C9C4D8 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.hero .lede { margin: 26px auto 0; font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--body); max-width: 36rem; line-height: 1.5; }
+.hero .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+.showcase { position: relative; margin: 72px auto 0; max-width: 54rem; padding-bottom: 96px; }
+.planet { position: absolute; left: 50%; top: 110px; width: 160vw; max-width: 2400px; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; z-index: 0;
+  background: linear-gradient(to bottom, #090A12 0, #090A12 260px, rgba(6, 7, 12, 0) 720px);
+  box-shadow: 0 -2px 0 0 rgba(255, 196, 168, .9), 0 -10px 40px 4px rgba(224, 129, 95, .55), 0 -60px 160px 30px rgba(224, 129, 95, .22), 0 -160px 260px 80px rgba(59, 42, 107, .35); }
+.card { position: relative; z-index: 1; text-align: left; background: rgba(16, 18, 30, .62); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--edge); border-radius: 22px; padding: 26px 28px 22px;
+  box-shadow: 0 30px 80px -30px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.06); }
+.card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--edge); margin-bottom: 8px; }
+.card-head h2 { font-family: var(--sans); font-size: 0.98rem; font-weight: 600; letter-spacing: 0; }
+.card-head .count { font-size: 0.88rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tasks { list-style: none; margin: 0; padding: 0; }
+.task { display: grid; grid-template-columns: 22px 1fr auto; gap: 14px; align-items: center; padding: 13px 2px; border-bottom: 1px dashed rgba(255,255,255,.08); }
+.task:last-child { border-bottom: 0; }
+.task .dot { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--muted); display: grid; place-items: center; transition: background .35s, border-color .35s, box-shadow .35s; }
+.task .dot svg { opacity: 0; transform: scale(.6); transition: opacity .3s, transform .3s; }
+.task .what { min-width: 0; font-size: 0.98rem; color: var(--star); transition: color .35s; }
+.task .tag { font-size: 0.82rem; color: var(--muted); padding: 3px 10px; border-radius: 999px; border: 1px solid var(--edge); white-space: nowrap; transition: all .35s; }
+.task.done .dot { background: var(--clay); border-color: var(--clay); box-shadow: 0 0 14px rgba(224, 129, 95, .7); }
+.task.done .dot svg { opacity: 1; transform: none; }
+.task.done .what { color: var(--muted); }
+.task.done .tag { border-color: rgba(224, 129, 95, .5); color: var(--clay-hot); background: rgba(224, 129, 95, .1); }
+.card-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: 0.85rem; color: var(--muted); }
+.card-foot button { font: inherit; font-size: 0.85rem; color: var(--star); background: var(--glass); border: 1px solid var(--edge); border-radius: 8px; padding: 4px 12px; cursor: pointer; }
+
+/* Sections */
+section.block { padding-block: 120px 0; }
+.head { max-width: 44rem; margin-bottom: 52px; }
+.head h2 { font-size: clamp(2.1rem, 4.4vw, 3.3rem); line-height: 1.06; letter-spacing: -0.025em; font-weight: 300; }
+.head p { margin-top: 18px; color: var(--body); font-size: 1.12rem; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; counter-reset: s; position: relative; }
+.steps::before { content: ""; position: absolute; left: 6%; right: 6%; top: 52px; height: 1px; background: linear-gradient(90deg, transparent, rgba(224,129,95,.6), rgba(155,130,230,.5), transparent); z-index: 0; }
+.steps li { counter-increment: s; min-width: 0; position: relative; z-index: 1; background: rgba(14, 16, 27, .7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--edge); border-radius: 18px; padding: 28px 26px 30px; }
+.steps .ico { color: var(--clay-hot); margin-bottom: 30px; display: block; filter: drop-shadow(0 0 8px rgba(224,129,95,.5)); }
+.steps .n { font-size: 0.85rem; color: var(--muted); margin-bottom: 6px; }
+.steps .n::after { content: " " counter(s); }
+.steps h3 { font-size: 1.7rem; line-height: 1.15; margin-bottom: 12px; }
+.steps p { color: var(--body); font-size: 1rem; }
+
+.clay-band { margin-top: 120px; position: relative; overflow: hidden; border-block: 1px solid rgba(224,129,95,.25);
+  background: radial-gradient(70% 140% at 50% 120%, rgba(224, 129, 95, .38), transparent 70%), linear-gradient(180deg, #0A0B13, #120E1A); }
+.clay-band::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--clay-hot), transparent); box-shadow: 0 0 18px 2px rgba(255, 150, 110, .6); }
+.clay-band .wrap { padding-block: 92px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: end; position: relative; }
+.clay-band h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); line-height: 1.08; letter-spacing: -0.025em; font-weight: 300; }
+.clay-band p { font-size: 1.12rem; color: var(--body); max-width: 30rem; }
+
+.areas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.area { min-width: 0; padding: 28px 26px; border-radius: 18px; background: var(--glass); border: 1px solid var(--edge); }
+.area h3 { font-size: 1.55rem; line-height: 1.15; margin-bottom: 18px; }
+.area ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.area li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; color: var(--body); font-size: 1rem; }
+.area li svg { margin-top: 5px; color: var(--clay-hot); }
+
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.about .copy { display: grid; gap: 18px; min-width: 0; }
+.about .copy h2 { font-size: clamp(2.1rem, 4.4vw, 3.3rem); line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 6px; font-weight: 300; }
+.about .copy .es { font-family: var(--serif); font-size: 1.45rem; color: var(--star); line-height: 1.35; }
+.facts { margin: 0; background: var(--glass); border: 1px solid var(--edge); border-radius: 18px; padding: 8px 26px; }
+.facts div { display: grid; grid-template-columns: 8.5rem 1fr; gap: 16px; padding-block: 16px; border-bottom: 1px solid var(--edge); }
+.facts div:last-child { border-bottom: 0; }
+.facts dt { color: var(--muted); font-size: 0.95rem; }
+.facts dd { margin: 0; color: var(--star); min-width: 0; }
+
+.faq { max-width: 46rem; margin-inline: auto; }
+.faq .head { text-align: center; margin-inline: auto; }
+.faq details { border-bottom: 1px solid var(--edge); }
+.faq details:first-of-type { border-top: 1px solid var(--edge); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 22px 0; font-family: var(--serif); font-size: 1.3rem; color: var(--star); }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary .pm { flex: none; transition: transform .25s; color: var(--clay-hot); }
+.faq details[open] summary .pm { transform: rotate(45deg); }
+.faq details p { padding: 0 40px 24px 0; color: var(--body); }
+
+.cta { text-align: center; padding-block: 140px 130px; position: relative; }
+.cta::before { content: ""; position: absolute; left: 50%; top: 50%; width: min(46rem, 90vw); aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; border: 1px solid rgba(255,255,255,.06); box-shadow: inset 0 0 120px rgba(59, 42, 107, .35); pointer-events: none; }
+.cta .wrap { position: relative; }
+.cta h2 { font-size: clamp(2.6rem, 6.2vw, 4.6rem); line-height: 1.03; letter-spacing: -0.03em; max-width: 16ch; margin-inline: auto; font-weight: 300; }
+.cta p { margin: 22px auto 0; color: var(--body); max-width: 34rem; font-size: 1.15rem; }
+.cta .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+.email-line { margin-top: 18px; display: flex; gap: 10px; justify-content: center; align-items: center; flex-wrap: wrap; font-size: 0.95rem; color: var(--muted); }
+.email-line code { font-family: var(--sans); color: var(--star); user-select: all; overflow-wrap: anywhere; }
+.email-line button { font: inherit; font-size: 0.85rem; color: var(--star); background: var(--glass); border: 1px solid var(--edge); border-radius: 8px; padding: 3px 11px; cursor: pointer; }
+
+footer { background: rgba(3, 3, 7, .85); color: var(--body); border-top: 1px solid rgba(255,255,255,.06); }
+footer .wrap { padding-block: 56px 40px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; }
+footer h4 { margin: 0 0 12px; font-weight: 500; font-size: 0.85rem; color: var(--muted); }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 0.95rem; }
+footer a { text-decoration: none; }
+footer a:hover { color: var(--star); }
+footer .legal { grid-column: 1 / -1; border-top: 1px solid rgba(255,255,255,.07); padding-top: 22px; font-size: 0.85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer .tag { margin-top: 14px; max-width: 22rem; font-size: 0.95rem; }
+
+@media (max-width: 900px) {
+  .nav { display: none; }
+  .right { margin-left: auto; }
+  .steps, .areas { grid-template-columns: 1fr; }
+  .steps::before { left: 40px; right: auto; top: 6%; bottom: 6%; width: 1px; height: auto; background: linear-gradient(180deg, transparent, rgba(224,129,95,.6), rgba(155,130,230,.5), transparent); }
+  .about, .clay-band .wrap { grid-template-columns: 1fr; gap: 32px; }
+  footer .wrap { grid-template-columns: 1fr 1fr; }
+  footer .wrap > :first-child { grid-column: 1 / -1; }
+  section.block { padding-block: 84px 0; }
+  .clay-band { margin-top: 84px; }
+  .clay-band .wrap { padding-block: 68px; }
+  .planet { width: 260vw; top: 90px; }
+}
+@media (max-width: 520px) {
+  .top .btn-small { display: none; }
+  .hero { padding-block: 56px 0; }
+  .showcase { padding-bottom: 72px; margin-top: 52px; }
+  .card { padding: 20px 18px 18px; border-radius: 18px; }
+  .task { grid-template-columns: 20px 1fr; }
+  .task .tag { grid-column: 2; justify-self: start; }
+  .facts div { grid-template-columns: 1fr; gap: 2px; }
+  .faq details p { padding-right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .task .dot, .task .dot svg, .task .what, .task .tag, .faq summary .pm, .btn { transition: none; }
+}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="S.I. Solutions home">
+      <span class="wm">S<span class="pt"></span>I<span class="pt"></span><span class="sub">Solutions</span></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how" data-i18n="nav_how">How it works</a>
+      <a href="#what" data-i18n="nav_what">What we automate</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#faq" data-i18n="nav_faq">Questions</a>
+    </nav>
+    <div class="right">
+      <div class="lang" role="group" aria-label="Language / Idioma">
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" id="lang-es" data-lang="es" aria-pressed="false">ES</button>
+      </div>
+      <a class="btn btn-dark btn-small" href="#contact" data-i18n="nav_cta">Book a call</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1 data-i18n="hero_title">Less busywork. More business.</h1>
+      <p class="lede" data-i18n="hero_lede">S.I. Solutions finds the repetitive work slowing your team down and hands it to AI that runs inside the tools you already use. In English or Spanish.</p>
+      <div class="actions">
+        <a class="btn btn-dark" href="#contact" data-i18n="cta_call">Book a free 20-minute call</a>
+        <a class="btn btn-line" href="#how" data-i18n="cta_how">See how it works</a>
+      </div>
+
+      <div class="showcase">
+        <div class="planet" aria-hidden="true"></div>
+        <div class="card" aria-labelledby="week-title">
+          <div class="card-head">
+            <h2 id="week-title" data-i18n="week_title">This week's busywork</h2>
+            <span class="count" id="count">0 / 5</span>
+          </div>
+          <ul class="tasks">
+            <li class="task"><span class="dot"><svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" stroke="var(--on-clay)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><span class="what" data-i18n="t1">Copy new leads from WhatsApp into the spreadsheet</span><span class="tag"></span></li>
+            <li class="task"><span class="dot"><svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" stroke="var(--on-clay)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><span class="what" data-i18n="t2">Answer the same five customer questions again</span><span class="tag"></span></li>
+            <li class="task"><span class="dot"><svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" stroke="var(--on-clay)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><span class="what" data-i18n="t3">Chase clients for missing documents</span><span class="tag"></span></li>
+            <li class="task"><span class="dot"><svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" stroke="var(--on-clay)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><span class="what" data-i18n="t4">Send appointment reminders</span><span class="tag"></span></li>
+            <li class="task"><span class="dot"><svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" stroke="var(--on-clay)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span><span class="what" data-i18n="t5">Build the weekly report from three apps</span><span class="tag"></span></li>
+          </ul>
+          <div class="card-foot">
+            <span data-i18n="week_foot">Example tasks. We start by learning what yours are.</span>
+            <button type="button" id="replay" data-i18n="week_replay">Replay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="how">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-i18n="how_title">One task, one pilot, one measured result.</h2>
+        <p data-i18n="how_lede">We don't sell software. We help you fix the part of your week that costs the most, and prove it worked.</p>
+      </div>
+      <ol class="steps">
+        <li>
+          <svg class="ico" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="17" cy="17" r="10"/><path d="M24.5 24.5L34 34"/><path d="M12 17h10M17 12v10" opacity=".55"/></svg>
+          <div class="n" data-i18n="step">Step</div>
+          <h3 data-i18n="s1_t">Find the costly task</h3>
+          <p data-i18n="s1_p">We talk with you and your team about how the work really gets done, then pick the one repetitive task that costs you the most time or money.</p>
+        </li>
+        <li>
+          <svg class="ico" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="9" width="12" height="9" rx="2"/><rect x="23" y="22" width="12" height="9" rx="2"/><path d="M17 13.5h5a3 3 0 0 1 3 3V22"/><path d="M8 26h7M11 23v6" opacity=".55"/></svg>
+          <div class="n" data-i18n="step">Step</div>
+          <h3 data-i18n="s2_t">Build one small pilot</h3>
+          <p data-i18n="s2_p">We automate that task inside the tools you already use, and time it before and after so the result is a number, not a feeling.</p>
+        </li>
+        <li>
+          <svg class="ico" width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="14" cy="14" r="5"/><circle cx="27" cy="16" r="4"/><path d="M5 33c0-5 4-9 9-9s9 4 9 9"/><path d="M24 25.5c1-.4 2-.5 3-.5 4 0 7 3 7 7" opacity=".55"/></svg>
+          <div class="n" data-i18n="step">Step</div>
+          <h3 data-i18n="s3_t">Make sure it gets used</h3>
+          <p data-i18n="s3_p">We train your team, adjust it to how they work, and keep a person reviewing anything that goes out to your customers.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="clay-band">
+    <div class="wrap">
+      <h2 data-i18n="promise_t">Start small. See the before and after. Then decide.</h2>
+      <p data-i18n="promise_p">Your first project is a small, fixed-price pilot on a single task. If it doesn't earn its place, you'll know before spending more.</p>
+    </div>
+  </div>
+
+  <section class="block" id="what">
+    <div class="wrap">
+      <div class="head">
+        <h2 data-i18n="what_title">What we can take off your plate</h2>
+        <p data-i18n="what_lede">Most of what we automate serves one of three goals. We help you choose the one that matters most right now.</p>
+      </div>
+      <div class="areas">
+        <div class="area">
+          <h3 data-i18n="a1_t">Win more customers</h3>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a1_1">Reply to new inquiries in minutes, day or night</span></li>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a1_2">Follow up with leads who went quiet</span></li>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a1_3">Research prospects before your sales calls</span></li>
+          </ul>
+        </div>
+        <div class="area">
+          <h3 data-i18n="a2_t">Serve customers better</h3>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a2_1">Send reminders, confirmations and updates automatically</span></li>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a2_2">Prepare quotes and proposals from a short form</span></li>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a2_3">Give every new customer the same smooth onboarding</span></li>
+          </ul>
+        </div>
+        <div class="area">
+          <h3 data-i18n="a3_t">Free up hours in the back office</h3>
+          <ul>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a3_1">Stop retyping data between apps and your CRM</span></li>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a3_2">Collect and sort documents and invoices</span></li>
+            <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7.5l3 3L12 3.5" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="a3_3">Get your weekly reports built for you</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap about">
+      <div class="copy">
+        <h2 data-i18n="about_title">A local partner who speaks your language</h2>
+        <p data-i18n="about_p1">S.I. Solutions is a Fort Lauderdale company that helps small and mid-sized businesses put AI to work in their day-to-day operations.</p>
+        <p data-i18n="about_p2">We're new, and we work that way on purpose: one owner, one task, one measured result at a time. You always talk to the person building your automation.</p>
+        <p class="es" data-i18n="about_es">Hablamos español. Every call, document and automation can be in English, Spanish or both.</p>
+      </div>
+      <dl class="facts">
+        <div><dt data-i18n="f1_t">Based in</dt><dd data-i18n="f1_d">Fort Lauderdale, Florida</dd></div>
+        <div><dt data-i18n="f2_t">Languages</dt><dd data-i18n="f2_d">English and Spanish</dd></div>
+        <div><dt data-i18n="f3_t">We build with</dt><dd data-i18n="f3_d">n8n, Claude and the apps you already use, like Google Workspace, WhatsApp and your CRM</dd></div>
+        <div><dt data-i18n="f4_t">Our rule</dt><dd data-i18n="f4_d">A person reviews anything that reaches your customers</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap faq">
+      <div class="head"><h2 data-i18n="faq_title">Questions owners ask us</h2></div>
+      <details><summary><span data-i18n="q1">How much does it cost?</span><svg class="pm" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><p data-i18n="a1">The first call is free. After it, we quote your pilot at a fixed price, so you know the full cost before we start. No monthly contract is required.</p></details>
+      <details><summary><span data-i18n="q2">Do I have to change the software I use?</span><svg class="pm" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><p data-i18n="a2">Usually not. We connect to the email, WhatsApp, spreadsheets and CRM you already have. If something would need to change, we tell you before we start.</p></details>
+      <details><summary><span data-i18n="q3">What happens to my business data?</span><svg class="pm" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><p data-i18n="a3">Your data stays in your accounts. We only get the access a task needs, and you can remove it any time.</p></details>
+      <details><summary><span data-i18n="q4">What if my team doesn't use it?</span><svg class="pm" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></summary><p data-i18n="a4">Getting it used is part of the job. We train your team, watch how it goes in the first weeks, and adjust it until it fits how they work.</p></details>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <h2 data-i18n="contact_title">Tell us about your week.</h2>
+      <p data-i18n="contact_p">In a free 20-minute call we ask how your business runs and tell you honestly whether automation can help.</p>
+      <div class="actions">
+        <a class="btn btn-dark" id="mail-btn" href="mailto:ernesto@sisolutionsai.com?subject=Discovery%20call" data-i18n="contact_btn">Email us to book a call</a>
+      </div>
+      <div class="email-line">
+        <code id="email">ernesto@sisolutionsai.com</code>
+        <button type="button" id="copy-email" data-i18n="copy">Copy</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="#top" aria-label="S.I. Solutions home">
+        <span class="wm">S<span class="pt"></span>I<span class="pt"></span><span class="sub">Solutions</span></span>
+      </a>
+      <p class="tag" data-i18n="footer_tag">AI automation for Florida businesses, in English and Spanish.</p>
+    </div>
+    <div>
+      <h4 data-i18n="footer_site">Site</h4>
+      <ul>
+        <li><a href="#how" data-i18n="nav_how">How it works</a></li>
+        <li><a href="#what" data-i18n="nav_what">What we automate</a></li>
+        <li><a href="#about" data-i18n="nav_about">About</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">Questions</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4 data-i18n="footer_contact">Contact</h4>
+      <ul>
+        <li><a href="mailto:ernesto@sisolutionsai.com">ernesto@sisolutionsai.com</a></li>
+        <li data-i18n="footer_loc">Fort Lauderdale, Florida</li>
+      </ul>
+    </div>
+    <div class="legal">
+      <span>© 2026 Super Intelligence Solutions LLC</span>
+      <span data-i18n="footer_lang">English · Español</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var T = {
+    en: {
+      nav_how: "How it works", nav_what: "What we automate", nav_about: "About", nav_faq: "Questions", nav_cta: "Book a call",
+      hero_title: "Less busywork. More business.",
+      hero_lede: "S.I. Solutions finds the repetitive work slowing your team down and hands it to AI that runs inside the tools you already use. In English or Spanish.",
+      cta_call: "Book a free 20-minute call", cta_how: "See how it works",
+      week_title: "This week's busywork", week_replay: "Replay", week_foot: "Example tasks. We start by learning what yours are.",
+      t1: "Copy new leads from WhatsApp into the spreadsheet",
+      t2: "Answer the same five customer questions again",
+      t3: "Chase clients for missing documents",
+      t4: "Send appointment reminders",
+      t5: "Build the weekly report from three apps",
+      tag_manual: "By hand", tag_auto: "Automated",
+      how_title: "One task, one pilot, one measured result.",
+      how_lede: "We don't sell software. We help you fix the part of your week that costs the most, and prove it worked.",
+      step: "Step",
+      s1_t: "Find the costly task", s1_p: "We talk with you and your team about how the work really gets done, then pick the one repetitive task that costs you the most time or money.",
+      s2_t: "Build one small pilot", s2_p: "We automate that task inside the tools you already use, and time it before and after so the result is a number, not a feeling.",
+      s3_t: "Make sure it gets used", s3_p: "We train your team, adjust it to how they work, and keep a person reviewing anything that goes out to your customers.",
+      promise_t: "Start small. See the before and after. Then decide.",
+      promise_p: "Your first project is a small, fixed-price pilot on a single task. If it doesn't earn its place, you'll know before spending more.",
+      what_title: "What we can take off your plate",
+      what_lede: "Most of what we automate serves one of three goals. We help you choose the one that matters most right now.",
+      a1_t: "Win more customers", a1_1: "Reply to new inquiries in minutes, day or night", a1_2: "Follow up with leads who went quiet", a1_3: "Research prospects before your sales calls",
+      a2_t: "Serve customers better", a2_1: "Send reminders, confirmations and updates automatically", a2_2: "Prepare quotes and proposals from a short form", a2_3: "Give every new customer the same smooth onboarding",
+      a3_t: "Free up hours in the back office", a3_1: "Stop retyping data between apps and your CRM", a3_2: "Collect and sort documents and invoices", a3_3: "Get your weekly reports built for you",
+      about_title: "A local partner who speaks your language",
+      about_p1: "S.I. Solutions is a Fort Lauderdale company that helps small and mid-sized businesses put AI to work in their day-to-day operations.",
+      about_p2: "We're new, and we work that way on purpose: one owner, one task, one measured result at a time. You always talk to the person building your automation.",
+      about_es: "Hablamos español. Every call, document and automation can be in English, Spanish or both.",
+      f1_t: "Based in", f1_d: "Fort Lauderdale, Florida",
+      f2_t: "Languages", f2_d: "English and Spanish",
+      f3_t: "We build with", f3_d: "n8n, Claude and the apps you already use, like Google Workspace, WhatsApp and your CRM",
+      f4_t: "Our rule", f4_d: "A person reviews anything that reaches your customers",
+      faq_title: "Questions owners ask us",
+      q1: "How much does it cost?", a1: "The first call is free. After it, we quote your pilot at a fixed price, so you know the full cost before we start. No monthly contract is required.",
+      q2: "Do I have to change the software I use?", a2: "Usually not. We connect to the email, WhatsApp, spreadsheets and CRM you already have. If something would need to change, we tell you before we start.",
+      q3: "What happens to my business data?", a3: "Your data stays in your accounts. We only get the access a task needs, and you can remove it any time.",
+      q4: "What if my team doesn't use it?", a4: "Getting it used is part of the job. We train your team, watch how it goes in the first weeks, and adjust it until it fits how they work.",
+      contact_title: "Tell us about your week.",
+      contact_p: "In a free 20-minute call we ask how your business runs and tell you honestly whether automation can help.",
+      contact_btn: "Email us to book a call", copy: "Copy", copied: "Copied", mail_subject: "Discovery call",
+      footer_tag: "AI automation for Florida businesses, in English and Spanish.", footer_site: "Site", footer_contact: "Contact",
+      footer_loc: "Fort Lauderdale, Florida", footer_lang: "English · Español",
+      meta: "S.I. Solutions helps Florida business owners hand their repetitive work to AI automations, in English or Spanish. We start with one small pilot and measure it."
+    },
+    es: {
+      nav_how: "Cómo trabajamos", nav_what: "Qué automatizamos", nav_about: "Nosotros", nav_faq: "Preguntas", nav_cta: "Agendar llamada",
+      hero_title: "Menos trabajo repetitivo. Más negocio.",
+      hero_lede: "S.I. Solutions encuentra las tareas repetitivas que frenan a su equipo y se las pasa a una IA que funciona dentro de las herramientas que ya usa. En español o en inglés.",
+      cta_call: "Agende una llamada gratis de 20 minutos", cta_how: "Vea cómo funciona",
+      week_title: "Las tareas repetitivas de esta semana", week_replay: "Repetir", week_foot: "Son ejemplos. Empezamos conociendo las suyas.",
+      t1: "Pasar clientes nuevos de WhatsApp a la hoja de cálculo",
+      t2: "Responder otra vez las mismas cinco preguntas",
+      t3: "Pedirles a los clientes los documentos que faltan",
+      t4: "Enviar recordatorios de citas",
+      t5: "Armar el reporte semanal con tres aplicaciones",
+      tag_manual: "A mano", tag_auto: "Automático",
+      how_title: "Una tarea, un piloto, un resultado medido.",
+      how_lede: "No vendemos software. Le ayudamos a resolver la parte de su semana que más le cuesta, y le mostramos que funcionó.",
+      step: "Paso",
+      s1_t: "Encontrar la tarea más costosa", s1_p: "Hablamos con usted y su equipo sobre cómo se hace el trabajo de verdad, y elegimos la tarea repetitiva que más tiempo o dinero le cuesta.",
+      s2_t: "Hacer un piloto pequeño", s2_p: "Automatizamos esa tarea dentro de las herramientas que ya usa y medimos el tiempo antes y después, para que el resultado sea un número.",
+      s3_t: "Asegurar que se use", s3_p: "Capacitamos a su equipo, lo ajustamos a su forma de trabajar y una persona revisa todo lo que llega a sus clientes.",
+      promise_t: "Empiece en pequeño. Vea el antes y el después. Luego decida.",
+      promise_p: "Su primer proyecto es un piloto pequeño, de precio fijo, sobre una sola tarea. Si no vale la pena, lo sabrá antes de gastar más.",
+      what_title: "Lo que podemos quitarle de encima",
+      what_lede: "Casi todo lo que automatizamos sirve para una de estas tres metas. Le ayudamos a elegir la que más importa ahora.",
+      a1_t: "Conseguir más clientes", a1_1: "Responder nuevas consultas en minutos, de día o de noche", a1_2: "Dar seguimiento a clientes que dejaron de responder", a1_3: "Investigar prospectos antes de sus llamadas de venta",
+      a2_t: "Atender mejor a sus clientes", a2_1: "Enviar recordatorios, confirmaciones y avisos automáticamente", a2_2: "Preparar cotizaciones y propuestas desde un formulario corto", a2_3: "Darle a cada cliente nuevo la misma bienvenida ordenada",
+      a3_t: "Liberar horas de oficina", a3_1: "Dejar de copiar datos entre aplicaciones y su CRM", a3_2: "Recibir y organizar documentos y facturas", a3_3: "Recibir sus reportes semanales listos",
+      about_title: "Un socio local que habla su idioma",
+      about_p1: "S.I. Solutions es una empresa de Fort Lauderdale que ayuda a negocios pequeños y medianos a usar la IA en su operación diaria.",
+      about_p2: "Somos nuevos y trabajamos así a propósito: un dueño, una tarea y un resultado medido a la vez. Siempre habla con la persona que construye su automatización.",
+      about_es: "We speak English. Cada llamada, documento y automatización puede ser en español, en inglés o en los dos.",
+      f1_t: "Ubicación", f1_d: "Fort Lauderdale, Florida",
+      f2_t: "Idiomas", f2_d: "Español e inglés",
+      f3_t: "Trabajamos con", f3_d: "n8n, Claude y las aplicaciones que ya usa, como Google Workspace, WhatsApp y su CRM",
+      f4_t: "Nuestra regla", f4_d: "Una persona revisa todo lo que llega a sus clientes",
+      faq_title: "Lo que nos preguntan los dueños",
+      q1: "¿Cuánto cuesta?", a1: "La primera llamada es gratis. Después le cotizamos el piloto a precio fijo, así sabe el costo total antes de empezar. No hace falta un contrato mensual.",
+      q2: "¿Tengo que cambiar el software que uso?", a2: "Normalmente no. Nos conectamos al email, WhatsApp, hojas de cálculo y CRM que ya tiene. Si algo tuviera que cambiar, se lo decimos antes de empezar.",
+      q3: "¿Qué pasa con los datos de mi negocio?", a3: "Sus datos se quedan en sus cuentas. Solo recibimos el acceso que la tarea necesita, y usted lo puede quitar cuando quiera.",
+      q4: "¿Y si mi equipo no lo usa?", a4: "Que se use es parte del trabajo. Capacitamos a su equipo, vemos cómo va en las primeras semanas y lo ajustamos hasta que encaje con su forma de trabajar.",
+      contact_title: "Cuéntenos cómo es su semana.",
+      contact_p: "En una llamada gratis de 20 minutos le preguntamos cómo funciona su negocio y le decimos con honestidad si la automatización le puede ayudar.",
+      contact_btn: "Escríbanos para agendar", copy: "Copiar", copied: "Copiado", mail_subject: "Llamada inicial",
+      footer_tag: "Automatización con IA para negocios en Florida, en español e inglés.", footer_site: "Sitio", footer_contact: "Contacto",
+      footer_loc: "Fort Lauderdale, Florida", footer_lang: "Español · English",
+      meta: "S.I. Solutions ayuda a dueños de negocios en Florida a pasar su trabajo repetitivo a automatizaciones con IA, en español o en inglés. Empezamos con un piloto pequeño y medido."
+    }
+  };
+
+  var lang = "en";
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  var tasks = Array.prototype.slice.call(document.querySelectorAll(".task"));
+
+  function paint() {
+    var n = 0;
+    tasks.forEach(function (t) { var d = t.classList.contains("done"); if (d) n++; t.querySelector(".tag").textContent = d ? T[lang].tag_auto : T[lang].tag_manual; });
+    document.getElementById("count").textContent = n + " / " + tasks.length;
+  }
+  function setLang(l) {
+    lang = T[l] ? l : "en";
+    var d = T[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(function (el) { var k = el.getAttribute("data-i18n"); if (d[k]) el.textContent = d[k]; });
+    document.querySelectorAll(".lang button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.lang === lang)); });
+    var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute("content", d.meta);
+    document.getElementById("mail-btn").href = "mailto:ernesto@sisolutionsai.com?subject=" + encodeURIComponent(d.mail_subject);
+    paint();
+  }
+
+  var timers = [];
+  function run() {
+    timers.forEach(clearTimeout); timers = [];
+    tasks.forEach(function (t) { t.classList.remove("done"); });
+    paint();
+    var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    tasks.forEach(function (t, i) {
+      timers.push(setTimeout(function () { t.classList.add("done"); paint(); }, reduce ? 0 : 900 + i * 520));
+    });
+  }
+
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.addEventListener("click", function () { setLang(b.dataset.lang); store("si-lang", b.dataset.lang); });
+  });
+  document.getElementById("replay").addEventListener("click", run);
+  document.getElementById("copy-email").addEventListener("click", function (e) {
+    var btn = e.currentTarget, el = document.getElementById("email");
+    function done() { btn.textContent = T[lang].copied; setTimeout(function () { btn.textContent = T[lang].copy; }, 1600); }
+    function fallback() { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    if (navigator.clipboard) navigator.clipboard.writeText(el.textContent).then(done, fallback); else fallback();
+  });
+
+  var saved = store("si-lang");
+  var guess = (navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+  setLang(saved || guess);
+  run();
+})();
+</script>
+<script>
+(function () {
+  var c = document.getElementById("stars"); if (!c || !c.getContext) return;
+  var ctx = c.getContext("2d"), stars = [], dpr = Math.min(window.devicePixelRatio || 1, 2), w, h;
+  var still = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function size() {
+    w = c.clientWidth; h = c.clientHeight; c.width = w * dpr; c.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var n = Math.round(w * h / 5200); stars = [];
+    for (var i = 0; i < n; i++) stars.push({ x: Math.random() * w, y: Math.random() * h * 1.6, r: Math.random() < .08 ? 1.4 + Math.random() : .4 + Math.random() * .8, a: .3 + Math.random() * .7, s: .4 + Math.random() * 1.6, p: Math.random() * 6.28, z: .15 + Math.random() * .6, warm: Math.random() < .12 });
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    var sy = window.scrollY || 0;
+    for (var i = 0; i < stars.length; i++) {
+      var st = stars[i], y = ((st.y - sy * st.z * 0.25) % (h * 1.6) + h * 1.6) % (h * 1.6);
+      if (y > h + 4) continue;
+      var tw = still ? st.a : st.a * (.65 + .35 * Math.sin(t / 1000 * st.s + st.p));
+      ctx.globalAlpha = tw;
+      ctx.fillStyle = st.warm ? "#FFC9AE" : "#EDEBFF";
+      ctx.beginPath(); ctx.arc(st.x, y, st.r, 0, 6.283); ctx.fill();
+      if (st.r > 1.3) { ctx.globalAlpha = tw * .18; ctx.beginPath(); ctx.arc(st.x, y, st.r * 4, 0, 6.283); ctx.fill(); }
+    }
+    ctx.globalAlpha = 1;
+    if (!still) requestAnimationFrame(draw);
+  }
+  size(); window.addEventListener("resize", size);
+  if (still) { draw(0); window.addEventListener("scroll", function () { draw(0); }, { passive: true }); } else requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>

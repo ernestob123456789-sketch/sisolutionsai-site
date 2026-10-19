@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=Hanken+Grotesk:wght@400;500;600&display=swap">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2306070C'/%3E%3Crect x='11' y='7' width='5' height='18' rx='1.2' fill='%23F3F1EA'/%3E%3Ccircle cx='22' cy='22.5' r='3.2' fill='%23FFB38F'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230B0C16'/%3E%3Ccircle cx='16' cy='16' r='11.2' fill='none' stroke='%23E0815F' stroke-opacity='.45' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23FFC9AE' stroke-width='1.4'/%3E%3Ccircle cx='16' cy='16' r='9.3' fill='%2306070C'/%3E%3Ccircle cx='23.2' cy='8.8' r='2.6' fill='%23FFF1E8'/%3E%3C/svg%3E">
 <style>
 /* Layout: deep-space single theme. Fixed starfield canvas behind everything; centered serif hero sits above a planet horizon lit in clay; glass panels float over the dark; one horizon band; FAQ; footer. */
 :root {
@@ -56,9 +56,9 @@ p { margin: 0; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--void); }
 .top .wrap { display: flex; align-items: center; gap: 28px; }
 .brand { display: flex; align-items: center; text-decoration: none; color: var(--star); }
-.wm { font-family: var(--serif); font-weight: 500; font-size: 1.85rem; letter-spacing: -0.03em; line-height: 1; color: var(--star); }
-.wm .pt { display: inline-block; width: 0.17em; height: 0.17em; margin: 0 0.07em 0 0.05em; border-radius: 50%; background: var(--clay-hot); box-shadow: 0 0 10px 2px rgba(255, 150, 110, .75), 0 0 22px 6px rgba(224, 129, 95, .35); vertical-align: baseline; }
-.wm .sub { font-family: var(--sans); font-weight: 400; font-size: 0.5em; letter-spacing: 0.02em; color: var(--body); margin-left: 0.45em; vertical-align: 0.18em; }
+.brand { gap: 0.55em; }
+.brand .ecl { width: 2.1rem; height: 2.1rem; flex: none; overflow: visible; }
+.wm { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; letter-spacing: -0.02em; line-height: 1; color: var(--star); white-space: nowrap; }
 .nav { display: flex; gap: 26px; margin-left: auto; }
 .nav a { text-decoration: none; color: var(--body); font-size: 0.95rem; }
 .nav a:hover { color: var(--star); }
@@ -206,7 +206,7 @@ footer .tag { margin-top: 14px; max-width: 22rem; font-size: 0.95rem; }
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="S.I. Solutions home">
-      <span class="wm">S<span class="pt"></span>I<span class="pt"></span><span class="sub">Solutions</span></span>
+      <svg class="ecl" viewBox="0 0 48 48" aria-hidden="true"><defs><filter id="egh" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="ech" cx="24" cy="24" r="23" gradientUnits="userSpaceOnUse"><stop offset=".62" stop-color="#E0815F" stop-opacity="0"/><stop offset=".7" stop-color="#E0815F" stop-opacity=".55"/><stop offset="1" stop-color="#3B2A6B" stop-opacity="0"/></radialGradient></defs><circle cx="24" cy="24" r="23" fill="url(#ech)"/><circle cx="24" cy="24" r="15.6" fill="none" stroke="#FFC9AE" stroke-width="1.1" filter="url(#egh)"/><circle cx="24" cy="24" r="15" fill="#06070C"/><circle cx="35" cy="13" r="2.6" fill="#FFF1E8" filter="url(#egh)"/></svg><span class="wm">S.I. Solutions</span>
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#how" data-i18n="nav_how">How it works</a>
@@ -374,7 +374,7 @@ footer .tag { margin-top: 14px; max-width: 22rem; font-size: 0.95rem; }
   <div class="wrap">
     <div>
       <a class="brand" href="#top" aria-label="S.I. Solutions home">
-        <span class="wm">S<span class="pt"></span>I<span class="pt"></span><span class="sub">Solutions</span></span>
+        <svg class="ecl" viewBox="0 0 48 48" aria-hidden="true"><defs><filter id="egf" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="ecf" cx="24" cy="24" r="23" gradientUnits="userSpaceOnUse"><stop offset=".62" stop-color="#E0815F" stop-opacity="0"/><stop offset=".7" stop-color="#E0815F" stop-opacity=".55"/><stop offset="1" stop-color="#3B2A6B" stop-opacity="0"/></radialGradient></defs><circle cx="24" cy="24" r="23" fill="url(#ecf)"/><circle cx="24" cy="24" r="15.6" fill="none" stroke="#FFC9AE" stroke-width="1.1" filter="url(#egf)"/><circle cx="24" cy="24" r="15" fill="#06070C"/><circle cx="35" cy="13" r="2.6" fill="#FFF1E8" filter="url(#egf)"/></svg><span class="wm">S.I. Solutions</span>
       </a>
       <p class="tag" data-i18n="footer_tag">AI automation for Florida businesses, in English and Spanish.</p>
     </div>
